@@ -1,0 +1,44 @@
+---
+import Navigation from '../components/Navigation.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const { pageTitle } = Astro.props;
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{pageTitle}</title>
+</head>
+<body>
+    <Navigation />
+    <main>
+        <h1>{pageTitle}</h1>
+        <slot />
+    </main>
+    <Footer />
+    <script src="../scripts/menu.js"></script>
+    <script is:inline>
+      function applyTheme(theme) {
+        if (theme === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      }
+
+      const storedTheme = typeof localStorage !== 'undefined' && localStorage.getItem('theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const defaultTheme = storedTheme || (prefersDark ? 'dark' : 'light');
+
+      applyTheme(defaultTheme);
+
+      window.addEventListener('load', () => {
+        applyTheme(defaultTheme);
+      });
+    </script>
+</body>
+</html>

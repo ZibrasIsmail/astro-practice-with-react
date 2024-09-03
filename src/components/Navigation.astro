@@ -1,0 +1,44 @@
+---
+import HamburgerMenu from './HamburgerMenu.astro';
+import ThemeIcon from './ThemeIcon.jsx';
+---
+<nav>
+    <HamburgerMenu />
+    <ul class="nav-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about">About</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/tags">Tags</a></li>
+        <li><ThemeIcon client:load /></li>
+    </ul>
+</nav>
+
+<style>
+    nav {
+        position: relative;
+    }
+    .nav-menu {
+        display: flex;
+        justify-content: space-around;
+        width: 100%;
+    }
+    @media screen and (max-width: 600px) {
+        .nav-menu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #333;
+            padding: 20px 0;
+        }
+        .nav-menu.is-active {
+            display: flex;
+        }
+        .nav-menu li {
+            margin: 10px 0;
+        }
+    }
+</style>

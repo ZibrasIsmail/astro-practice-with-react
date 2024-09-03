@@ -1,20 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPost from '../components/BlogPost.astro';
-import Greeting from '../components/Greeting.jsx';
-
 const allPosts = await Astro.glob('../pages/posts/*.md');
-const recentPosts = allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime()).slice(0, 3);
-const pageTitle = "Home Page";
+const pageTitle = "My Astro Learning Blog";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-    <Greeting client:load messages={["Hola", "Bonjour", "Konnichiwa", "Guten Tag"]} />
-    <p>Welcome to my Astro blog website. Here you can find information about me and my latest blog posts.</p>
-    
-    <h2>Recent Posts</h2>
+    <p>This is where I will post about my journey learning Astro.</p>
     <ul class="post-list">
-        {recentPosts.map((post) => (
+        {allPosts.map((post) => (
             <BlogPost 
                 url={post.url}
                 title={post.frontmatter.title}

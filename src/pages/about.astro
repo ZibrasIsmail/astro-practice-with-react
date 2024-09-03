@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const pageTitle = "About Me";
+const skills = ["HTML", "CSS", "JavaScript", "React", "Astro", "Writing Docs"];
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <p>Welcome to my about page. Here's a little bit about me:</p>
+    
+    <h2>My Skills</h2>
+    <ul>
+        {skills.map((skill) => <li>{skill}</li>)}
+    </ul>
+
+    <h2>My Background</h2>
+    <p>I'm a web developer passionate about creating user-friendly and performant websites. I love learning new technologies and sharing my knowledge with others.</p>
+
+    <h2>My Goals</h2>
+    <p>I'm constantly working on improving my skills and staying up-to-date with the latest web development trends. My goal is to contribute to meaningful projects that make a positive impact.</p>
+</BaseLayout>
